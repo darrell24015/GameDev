@@ -1,7 +1,10 @@
 ArduboyLib
 ==========
 
-Core library for the Arduboy.  If you're building an app for the Arduboy this is likely where you want to start.
+**10/10/2015** 
+
+This is a clone of the Core library for the Arduboy from https://github.com/Arduboy/Arduboy.git  
+If you're building an app for the Arduboy this is likely where you want to start.
 
 
 ## How to use the library
