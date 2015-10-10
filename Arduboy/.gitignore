@@ -1,0 +1,7 @@
+*.swp
+
+.build
+Makefile
+ino.ini
+work
+*.eep
