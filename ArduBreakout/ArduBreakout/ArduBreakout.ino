@@ -26,7 +26,7 @@ boolean paused = false;   //If the game has been paused
 byte xPaddle;       //X position of paddle
 boolean isHit[5][12];   //Array of if bricks are hit or not
 boolean bounced=false;  //Used to fix double bounce glitch
-byte lives = 6;       //Amount of lives
+byte lives = 9;       //Amount of lives
 byte level = 1;       //Current level
 unsigned int score=0;   //Score for the game
 unsigned int brickCount;  //Amount of bricks hit
@@ -729,7 +729,7 @@ void loop()
     arduboy.clearDisplay();
     initialDraw=false;
     start=false;
-    lives=6;
+    lives=9;
     score=0;
     newLevel();
   }
