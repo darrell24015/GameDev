@@ -33,6 +33,7 @@ unsigned int brickCount;  //Amount of bricks hit
 byte pad,pad2,pad3;     //Button press buffer used to stop pause repeating
 byte oldpad,oldpad2,oldpad3;
 char text[16];      //General string buffer
+char livesText[12]; // Buffer for displaying number of plays left
 boolean start=false;    //If in menu or in game
 boolean initialDraw=false;//If the inital draw has happened
 char initials[3];     //Initials used in high score
@@ -55,12 +56,14 @@ byte tick;
 
 void intro()
 {
-  for(int i = -8; i < 28; i = i + 2)
+  for(int i = -8; i < 45; i = i + 2)
   {
     arduboy.clearDisplay();
-    arduboy.setCursor(45, i);
-    arduboy.print("ARDUBOY!");
+    arduboy.setCursor(20, i);
+    arduboy.print("THIS IS ARDUBOY!");
     arduboy.display();
+    // Need small delay, scrolls too fast!
+    delay(75);
   }
 
   arduboy.tunes.tone(987, 160);
@@ -130,6 +133,8 @@ void moveBall()
       lives--;
       drawLives();
       arduboy.tunes.tone(175, 250);
+      // Short delay before next play
+      delay(100);
       if (random(0, 2) == 0)
       {
         dx = 1;
@@ -276,9 +281,17 @@ void drawPaddle()
 
 void drawLives()
 {
-  sprintf(text, "LIVES:%u", lives);
-  arduboy.setCursor(0, 90);
-  arduboy.print(text);
+  if (lives >= 1) // No need to display lives when game over
+  {
+  sprintf(livesText, "LIVES:%u", lives);
+  arduboy.setCursor(3, 50);
+  arduboy.print(livesText);
+  arduboy.display();
+  delay(500);
+  arduboy.setCursor(3, 50);
+  arduboy.print("            ");
+  arduboy.display();
+  }
 }
 
 void drawGameOver()
@@ -295,6 +308,7 @@ void drawGameOver()
   delay(4000);
 }
 
+// TODO: Get Pause to work
 void pause()
 {
   paused = true;
@@ -351,8 +365,9 @@ void newLevel(){
   }
 
   //Draws the initial lives
-  drawLives();
+  //drawLives(); This was drawing an extra screen not needed
 
+  //TODO: Fix how score is being displayed
   //Draws the initial score
   sprintf(text, "SCORE:%u", score);
   arduboy.setCursor(80, 90);
@@ -432,9 +447,9 @@ boolean titleScreen()
 {
   //Clears the screen
   arduboy.clearDisplay();
-  arduboy.setCursor(16,22);
-  arduboy.setTextSize(2);
-  arduboy.print("ARAKNOID");
+  arduboy.setCursor(27,22);
+  arduboy.setTextSize(1);
+  arduboy.print("ARDUBREAKOUT");
   arduboy.setTextSize(1);
   arduboy.display();
   if (pollFireButton(25))
@@ -457,9 +472,9 @@ boolean titleScreen()
     }
     //Removes "Press FIRE"
     arduboy.clearDisplay();
-    arduboy.setCursor(16,22);
-    arduboy.setTextSize(2);
-    arduboy.print("ARAKNOID");
+    arduboy.setCursor(27,22);
+    arduboy.setTextSize(1);
+    arduboy.print("ARDUBREAKOUT");
     arduboy.setTextSize(1);
     arduboy.display();
 
@@ -661,11 +676,12 @@ void setup()
 {
   arduboy.start();
   arduboy.setFrameRate(60);
+  arduboy.setCursor(29, 22);
   arduboy.print("Hello World!");
   arduboy.display();
+  delay(1500);
   intro();
 }
-
 
 void loop()
 {
