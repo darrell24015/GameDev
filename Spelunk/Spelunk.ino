@@ -8,7 +8,11 @@
  */
 
 #include <SPI.h>
-#include "Arduboy.h"
+#include <audio.h>
+#include <Arduboy.h>
+#include <core.h>
+#include <EEPROM.h>
+
 
 Arduboy arduboy;
 
