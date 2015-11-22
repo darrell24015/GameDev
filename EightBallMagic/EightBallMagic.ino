@@ -62,15 +62,24 @@ void notPressed() {
   delay(500);
 }
 
+void thinking(){
+  myArduboy.clearDisplay();
+  myArduboy.drawBitmap(0,0,small,56,56,1);
+  myArduboy.setCursor(10,56);
+  myArduboy.print("   Thinking   ");
+  myArduboy.display();
+  delay(1500);
+}
+
 void theAnswer() {
+  thinking();
   answer = answers[random(answerCount)];
   myArduboy.clearDisplay();
-  myArduboy.setCursor(10, 42);
+  myArduboy.setCursor(10, 56);
   myArduboy.print(answer);
   myArduboy.display();
   tuneYes();
   delay(1500);
-  
 }
 
 void tuneYes() {
@@ -89,10 +98,10 @@ void tuneNo() {
 
 void eightBall() {
   myArduboy.clearDisplay();
-  myArduboy.drawBitmap(0,0,eightball,128,64,WHITE);
+  myArduboy.drawBitmap(0,0,eightball,128,46,1);
+  myArduboy.display();
   delay(1500);
 }
-
 
 void titleScreen() {
   myArduboy.clearDisplay();
