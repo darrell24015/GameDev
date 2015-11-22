@@ -46,7 +46,6 @@ void intro() {
     myArduboy.display();
     // Need small delay, scrolls too fast!
     delay(75);
-    
   }
   
   tuneYes();
@@ -64,8 +63,8 @@ void notPressed() {
 
 void thinking(){
   myArduboy.clearDisplay();
-  myArduboy.drawBitmap(0,0,small,56,56,1);
-  myArduboy.setCursor(10,56);
+  myArduboy.drawSlowXYBitmap(0,5,small,56,56,1);
+  myArduboy.setCursor(57,45);
   myArduboy.print("   Thinking   ");
   myArduboy.display();
   delay(1500);
@@ -74,10 +73,16 @@ void thinking(){
 void theAnswer() {
   thinking();
   answer = answers[random(answerCount)];
-  myArduboy.clearDisplay();
-  myArduboy.setCursor(10, 56);
-  myArduboy.print(answer);
-  myArduboy.display();
+  
+  for(int i = -8; i < 36; i = i + 2)
+  {
+    myArduboy.clearDisplay();
+    myArduboy.setCursor(10, i);
+    myArduboy.print(answer);
+    myArduboy.display();
+    // Need small delay, scrolls too fast!
+    delay(75);
+  }
   tuneYes();
   delay(1500);
 }
@@ -98,9 +103,11 @@ void tuneNo() {
 
 void eightBall() {
   myArduboy.clearDisplay();
-  myArduboy.drawBitmap(0,0,eightball,128,46,1);
+  myArduboy.drawSlowXYBitmap(0,0,eightball,128,46,1);
+  myArduboy.setCursor(10,56);
+  myArduboy.print("Eight Ball Magic");
   myArduboy.display();
-  delay(1500);
+  delay(3000);
 }
 
 void titleScreen() {
