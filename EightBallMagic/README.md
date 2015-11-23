@@ -6,6 +6,7 @@ bitmaps that are displayed using the function *drawSlowXYBitmap()*
 
 [Arduboy Image Converter](http://www.andrewlowndes.co.uk/blog/graphics/arduboy-image-converter)
 
+**11/22/2015**
 Added myArduboy.initRandomSeed() to setup to improve the distribution of random answers.
 
 
