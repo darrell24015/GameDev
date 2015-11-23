@@ -122,6 +122,7 @@ void titleScreen() {
   }
 
 void setup() {
+  myArduboy.initRandomSeed();
   myArduboy.start();
   myArduboy.setFrameRate(60);
   myArduboy.setCursor(29, 22);
