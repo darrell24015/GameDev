@@ -1,6 +1,8 @@
 /*
  * EightBallMagic
- * Author: Darrell Little - UselessApps.net
+ * Author: Darrell Little
+ * Blog: https://learntoprogramroanoke.github.io/
+ * Repository: https://github.com/darrell24015/GameDev
  * 
  * Ask the Eight Ball anything, it will tell you no lies!
  * 
@@ -8,29 +10,35 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * Edit: 06/30/2019 
+ * Updated code using new Arduboy library and Arduino IDE 1.6.9
+ * Removed
+ * #include <audio.h>
+ * #include <EEPROM.h>
+ * #include <core.h>
+ * 
  */
 
 #include <SPI.h>
-#include <audio.h>
 #include <Arduboy.h>
-#include <core.h>
-#include <EEPROM.h>
+
 #include "bitmaps.h"
 
 Arduboy myArduboy;
 
 // Store answers in an array
 char* answers[] = {
-  "  It is certain", "Reply hazy, try again",
-  "It is decidedly so", "  Ask again later",
+  "  It is certain", "Reply hazy try again",
+  "It is decidedly so", " Ask again later",
   " Without a doubt", "Better not tell you",
-  "Yes, definately", "Cannot predict now",
+  " Yes, definately", "Cannot predict now",
   "You may rely on it", " Ask again later",
   "As I see it, yes", "Do not count on it",
   "   Most likely", "  My reply is no",
   "Outlook good", "My sources say no",
   "    Yes    ", "Outlook not so good",
-  "Signs point to yes", "Very doubtful"
+  "Signs point to yes", "  Very doubtful"
 };
 
 int answerCount = 20; // the number of answers in the array
@@ -77,7 +85,7 @@ void theAnswer() {
   for(int i = -8; i < 36; i = i + 2)
   {
     myArduboy.clearDisplay();
-    myArduboy.setCursor(10, i);
+    myArduboy.setCursor(8, i);
     myArduboy.print(answer);
     myArduboy.display();
     // Need small delay, scrolls too fast!
@@ -125,7 +133,7 @@ void setup() {
   myArduboy.initRandomSeed();
   myArduboy.start();
   myArduboy.setFrameRate(60);
-  myArduboy.setCursor(29, 22);
+  myArduboy.setCursor(28, 5);
   myArduboy.print("Hello World!");
   myArduboy.display();
   delay(1500);
